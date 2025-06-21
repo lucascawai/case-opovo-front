@@ -1,24 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Landing Page</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-</head>
-<body>
-  <header>
-    <!-- Conteúdo do cabeçalho -->
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Paytone+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header__container">
+        <div class="logo">
+          <a href="#"
+            ><img
+              src="assets/images/logo-clara.png"
+              alt="Logo"
+              class="logo__image"
+          /></a>
+        </div>
+        <nav class="nav">
+          <ul class="nav__list">
+            <li><a href="#">Filmes</a></li>
+            <li><a href="#">Séries</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-  <main id="main-content">
-    <!-- Aqui você pode injetar conteúdo da API via JS -->
-  </main>
+    <main id="main-content">
+      <section class="main-movie">
+        <div class="content-container movie-wrapper">
+          <div class="movie-poster">
+            <img id="poster" src="" alt="Poster do Filme" />
+          </div>
 
-  <footer>
-    <!-- Rodapé -->
-  </footer>
+          <div class="movie-info">
+            <h2 class="movie-title">
+              <span id="title">Título do Filme</span>
+              <span id="year" class="movie-year">(1999)</span>
+            </h2>
+            <div class="movie-field">
+              <h3 class="field-label">Gênero:</h3>
+              <p id="genre" class="field-value"></p>
+            </div>
 
-  <script src="assets/js/main.js"></script>
-</body>
+            <div class="movie-field">
+              <h3 class="field-label">Sinopse:</h3>
+              <p id="synopsis" class="field-value"></p>
+            </div>
+
+            <div class="movie-details-list">
+              <div class="movie-detail">
+                <h3 class="detail-label">Dirigido por:</h3>
+                <p id="director" class="detail-value"></p>
+              </div>
+
+              <div class="movie-detail">
+                <h3 class="detail-label">Escrito por:</h3>
+                <p id="writer" class="detail-value"></p>
+              </div>
+
+              <div class="movie-detail">
+                <h3 class="detail-label">Situação:</h3>
+                <p id="status" class="detail-value"></p>
+              </div>
+
+              <div class="movie-detail">
+                <h3 class="detail-label">Idioma Original:</h3>
+                <p id="language" class="detail-value"></p>
+              </div>
+
+              <div class="movie-detail">
+                <h3 class="detail-label">Orçamento:</h3>
+                <p id="budget" class="detail-value"></p>
+              </div>
+
+              <div class="movie-detail">
+                <h3 class="detail-label">Receita:</h3>
+                <p id="revenue" class="detail-value"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="cast">
+        <div class="content-container">cast</div>
+      </section>
+      <section class="miscellaneous">
+        <div class="content-container">miscellaneous</div>
+      </section>
+      <section class="recommendations">
+        <div class="content-container">recommendations</div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer__container">
+        <div class="footer__logo">
+          <a href="#">
+            <img
+              src="assets/images/logo-escura.png"
+              alt="Logo"
+              class="footer__logo-image"
+            />
+          </a>
+        </div>
+
+        <nav class="footer__nav">
+          <ul class="footer__list">
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Suporte</a></li>
+            <li><a href="#">Adicione um Filme</a></li>
+            <li><a href="#">Adicione uma Série</a></li>
+            <li><a href="#">Discussões</a></li>
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#">Diretrizes</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
