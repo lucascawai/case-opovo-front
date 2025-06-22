@@ -89,7 +89,7 @@ async function loadCast() {
     cast.forEach((actor) => {
       const profilePath = actor.profile_path
         ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-        : "assets/images/avatar-placeholder.jpg"; // fallback
+        : "assets/images/avatar-placeholder.jpg"; // fallback, não tenho fallback por enquanto
 
       const card = document.createElement("div");
       card.className = "cast-member";
@@ -104,26 +104,6 @@ async function loadCast() {
     console.error("Erro ao carregar elenco:", error);
   }
 }
-
-// const wrapper = document.querySelector(".carousel-wrapper");
-// const carousel = document.getElementById("cast-carousel");
-
-// function updateFade() {
-//   const scrollLeft = carousel.scrollLeft;
-//   const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-
-//   if (scrollLeft > 5) {
-//     wrapper.classList.add("fade-left");
-//   } else {
-//     wrapper.classList.remove("fade-left");
-//   }
-
-//   if (scrollLeft < maxScrollLeft - 5) {
-//     wrapper.classList.add("fade-right");
-//   } else {
-//     wrapper.classList.remove("fade-right");
-//   }
-// }
 
 function setupFadeEffect(wrapperSelector = ".fade-control") {
   const wrappers = document.querySelectorAll(wrapperSelector);
@@ -148,9 +128,6 @@ function setupFadeEffect(wrapperSelector = ".fade-control") {
     setTimeout(updateFade, 0);
   });
 }
-
-// Atualiza na rolagem
-// carousel.addEventListener("scroll", updateFade);
 
 // Após inserir os cards no carousel:
 loadCast().then(() => {
@@ -276,8 +253,82 @@ async function fetchVideos() {
   }
 }
 
+// function hideCutOffVideoCards() {
+//   const container = document.querySelector(".media-videos-carousel");
+//   const cards = container.querySelectorAll(".video-card");
+
+//   cards.forEach((card) => {
+//     const rect = card.getBoundingClientRect();
+//     const containerRect = container.getBoundingClientRect();
+
+//     if (rect.right > containerRect.right) {
+//       card.style.display = "none";
+//     } else {
+//       card.style.display = "";
+//     }
+//   });
+// }
+
+// function waitForImagesThenHide(querySelector) {
+//   const images = document.querySelectorAll(`${querySelector} img`);
+//   let loaded = 0;
+
+//   if (images.length === 0) {
+//     hideCutOffVideoCards();
+//     return;
+//   }
+
+//   images.forEach((img) => {
+//     if (img.complete) {
+//       loaded++;
+//     } else {
+//       img.addEventListener("load", () => {
+//         loaded++;
+//         if (loaded === images.length) {
+//           hideCutOffVideoCards();
+//         }
+//       });
+//     }
+//   });
+
+//   if (loaded === images.length) {
+//     hideCutOffVideoCards();
+//   }
+// }
+
+// window.addEventListener("resize", hideCutOffVideoCards);
+// window.addEventListener("load", waitForImagesThenHide);
+
+function hideOverflowingVideoCards(containerSelector, cardSelector, cardWidth) {
+  const container = document.querySelector(containerSelector);
+  const cards = container.querySelectorAll(cardSelector);
+
+  const containerWidth = container.clientWidth;
+  const gap = 16; // 1rem = 16px, ajuste se o gap mudar
+  const totalCardWidth = cardWidth + gap;
+
+  // Quantos cabem sem cortar
+  const maxVisibleCards = Math.floor(containerWidth / totalCardWidth);
+
+  cards.forEach((card, index) => {
+    if (index >= maxVisibleCards) {
+      card.style.display = "none";
+    } else {
+      card.style.display = "";
+    }
+  });
+}
+
+window.addEventListener("load", () => {
+  hideOverflowingVideoCards(".media-videos-carousel", ".video-card", 300);
+});
+window.addEventListener("resize", () => {
+  hideOverflowingVideoCards(".media-videos-carousel", ".video-card", 300);
+});
+
 fetchVideos().then(() => {
   setupMobileFadeEffect(".media-carousel-wrapper");
+  hideOverflowingVideoCards(".media-videos-carousel", ".video-card", 300);
 });
 
 async function fetchPosters() {
@@ -287,7 +338,7 @@ async function fetchPosters() {
     );
     const data = await res.json();
 
-    const posters = data.posters.slice(0, 10); // limita a 10 pôsteres (ou quantos quiser)
+    const posters = data.posters; //.slice(0, 10); // limita a 10 pôsteres (ou quantos quiser)
 
     const postersCountElement = document.querySelector(".media-posters-count");
     postersCountElement.textContent = `(${posters.length})`;
@@ -311,8 +362,16 @@ async function fetchPosters() {
   }
 }
 
+window.addEventListener("load", () => {
+  hideOverflowingVideoCards(".media-posters-carousel", ".poster-card", 290);
+});
+window.addEventListener("resize", () => {
+  hideOverflowingVideoCards(".media-posters-carousel", ".poster-card", 290);
+});
+
 fetchPosters().then(() => {
   setupMobileFadeEffect(".media-carousel-wrapper");
+  hideOverflowingVideoCards(".media-posters-carousel", ".poster-card", 290);
 });
 
 async function fetchBackdrops() {
@@ -322,7 +381,7 @@ async function fetchBackdrops() {
     );
     const data = await res.json();
 
-    const backdrops = data.backdrops.slice(0, 10); // limitar a 10 imagens
+    const backdrops = data.backdrops; //.slice(0, 10); // limitar a 10 imagens
 
     const backdropContainer = document.querySelector(
       ".media-backdrops-carousel"
@@ -350,8 +409,16 @@ async function fetchBackdrops() {
   }
 }
 
+window.addEventListener("load", () => {
+  hideOverflowingVideoCards(".media-backdrops-carousel", ".backdrop-card", 600);
+});
+window.addEventListener("resize", () => {
+  hideOverflowingVideoCards(".media-backdrops-carousel", ".backdrop-card", 600);
+});
+
 fetchBackdrops().then(() => {
   setupMobileFadeEffect(".media-carousel-wrapper");
+  hideOverflowingVideoCards(".media-backdrops-carousel", ".backdrop-card", 600);
 });
 
 async function fetchRecommendations() {
@@ -384,6 +451,26 @@ async function fetchRecommendations() {
   }
 }
 
+window.addEventListener("load", () => {
+  hideOverflowingVideoCards(
+    ".recommendations-carousel",
+    ".recommendation-card",
+    180
+  );
+});
+window.addEventListener("resize", () => {
+  hideOverflowingVideoCards(
+    ".recommendations-carousel",
+    ".recommendation-card",
+    180
+  );
+});
+
 fetchRecommendations().then(() => {
   setupMobileFadeEffect(".recommendations-carousel-wrapper");
+  hideOverflowingVideoCards(
+    ".recommendations-carousel",
+    ".recommendation-card",
+    180
+  );
 });
