@@ -44,13 +44,13 @@ body {
 }
 
 /* Nav */
-.nav__list {
+/* .nav__list {
   list-style: none;
   display: flex;
   gap: 1.5rem;
   margin: 0;
   padding: 0;
-}
+} */
 
 .nav__list a {
   color: #f8f0e5;
@@ -63,7 +63,51 @@ body {
 .nav__list a:hover {
   text-decoration: underline;
 }
+
+/* Esconde o botão de menu no desktop */
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #f8f0e5;
+  cursor: pointer;
+}
+
+/* Menu padrão horizontal (desktop) */
+.nav__list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile/tablet - esconde o menu inicialmente */
+@media (max-width: 768px) {
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    /* top: 6.25rem; mesma altura do header */
+    right: 0;
+    background-color: #102c57;
+    padding: 1rem 2rem;
+    /* width: 100%; */
+    z-index: 10;
+  }
+
+  .nav__list.show {
+    display: flex;
+  }
+}
+
 /* ====================================================================MAIN==================================================================== */
+/* ====================================================================MAIN-CONTENT==================================================================== */
 #main-content {
   max-width: 120rem;
   /* margin: 0 auto; */
@@ -231,6 +275,626 @@ body {
 }
 .recommendations {
   background-color: #eadbc8;
+}
+/* ====================================================================CAST==================================================================== */
+.cast {
+  background-color: #eadbc8;
+  padding: 4rem 0;
+}
+
+.cast-header {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.cast-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #102c57;
+}
+
+.cast-button {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #f8f0e5;
+  padding: 0.5rem 1rem;
+  background-color: #102c57;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.cast-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  opacity: 0; /* começa invisível */
+}
+
+.carousel-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #eadbc8, transparent);
+}
+
+.carousel-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #eadbc8, transparent);
+}
+
+/* Variáveis para controlar opacidade */
+.carousel-wrapper.fade-left::before {
+  opacity: 1;
+}
+
+.carousel-wrapper.fade-right::after {
+  opacity: 1;
+}
+
+/* .cast-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  scroll-behavior: smooth;
+} */
+
+.cast-member {
+  flex: 0 0 auto;
+  text-align: center;
+  width: 11.875rem;
+}
+
+.cast-member img {
+  width: 11.875rem;
+  height: 11.875rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.cast-member-name {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #102c57;
+}
+
+.cast-member-character {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #333333;
+  margin-top: 0.625rem;
+}
+/* ====================================================================MISCELLANEOUS==================================================================== */
+/* ====================================================================REVIEWS==================================================================== */
+.miscellaneous {
+  padding: 4.375rem 0;
+}
+.reviews-header {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.reviews-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #102c57;
+}
+
+.reviews-button {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #f8f0e5;
+  padding: 0.5rem 1rem;
+  background-color: #102c57;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.reviews-cards {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap; /* 2 cards lado a lado */
+}
+
+.review-card {
+  background-color: #eadbc8;
+  padding: 1.875rem;
+  border-radius: 0.5rem;
+  flex: 1 1 40%; /* 2 cards lado a lado */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.review-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #333333;
+  text-align: left;
+  letter-spacing: 0;
+  margin-bottom: 1.875rem;
+  margin-top: 0;
+  flex-grow: 1;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 9; /* número máximo de linhas visíveis */
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #666;
+  gap: 1rem;
+}
+
+.review-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.review-footer-right {
+  font-weight: bold;
+  font-size: 1rem;
+  align-self: flex-end;
+}
+
+.review-by {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #333333;
+  margin-right: 0.25rem;
+}
+
+.review-author {
+  margin-bottom: 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #102c57;
+}
+
+.review-date {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #333333;
+}
+
+.review-label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #333333;
+}
+
+.review-rating {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #102c57;
+}
+
+/* ====================================================================MEDIA==================================================================== */
+/* ====================================================================VIDEOS==================================================================== */
+.media-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #102c57;
+  margin-top: 4.375rem;
+  margin-bottom: 0;
+}
+
+.media-videos-header {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  gap: 1rem;
+  /* margin-bottom: 1.5rem; */
+  margin-top: 1.875rem;
+}
+
+.media-videos-count {
+  color: #dac0a3;
+  font-weight: normal;
+}
+
+.media-videos-title {
+  font-size: 2rem;
+  font-weight: normal;
+  color: #102c57;
+}
+
+.media-videos-button {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #f8f0e5;
+  padding: 0.5rem 1rem;
+  background-color: #102c57;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.media-videos-carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.media-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.media-carousel-wrapper::before,
+.media-carousel-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  opacity: 0; /* começa invisível */
+}
+
+.media-carousel-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f8f0e5, transparent);
+}
+
+.media-carousel-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f8f0e5, transparent);
+}
+
+/* Variáveis para controlar opacidade */
+.media-carousel-wrapper.fade-left::before {
+  opacity: 1;
+}
+
+.media-carousel-wrapper.fade-right::after {
+  opacity: 1;
+}
+
+.video-card {
+  flex: 0 0 auto;
+  width: 300px;
+  scroll-snap-align: start;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.video-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+.video-card:hover {
+  transform: scale(1.03);
+}
+
+/* Desktop/tablet: esconder scroll e quebrar layout se necessário */
+@media (min-width: 768px) {
+  .media-videos-carousel {
+    overflow: hidden;
+    flex-wrap: nowrap;
+  }
+
+  .video-card {
+    flex: 0 0 auto;
+    width: 25rem;
+  }
+}
+/* ====================================================================POSTERS==================================================================== */
+.media-posters-header {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin: 2rem 0 1.5rem;
+  gap: 1rem;
+}
+
+.media-posters-count {
+  color: #dac0a3;
+  font-weight: normal;
+}
+
+.media-posters-title {
+  font-size: 2rem;
+  font-weight: normal;
+  color: #102c57;
+}
+
+.media-posters-button {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #f8f0e5;
+  padding: 0.5rem 1rem;
+  background-color: #102c57;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.media-posters-carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.poster-card {
+  flex: 0 0 auto;
+  width: auto;
+  height: 27.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.poster-card img {
+  height: 100%;
+  width: auto;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+/* Desktop/tablet: limitar a uma linha de pôsteres */
+@media (min-width: 768px) {
+  .media-posters-carousel {
+    overflow: hidden;
+    flex-wrap: nowrap;
+  }
+
+  .poster-card {
+    flex: 0 0 auto;
+    width: 18.438rem;
+  }
+}
+
+/* ====================================================================BACKDROPS==================================================================== */
+.media-backdrops-header {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin: 2rem 0 1.5rem;
+  gap: 1rem;
+}
+
+.media-backdrops-count {
+  color: #dac0a3;
+  font-weight: normal;
+}
+
+.media-backdrops-title {
+  font-size: 2rem;
+  font-weight: normal;
+  color: #102c57;
+}
+.media-backdrops-button {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #f8f0e5;
+  padding: 0.5rem 1rem;
+  background-color: #102c57;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.media-backdrops-carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.backdrop-card {
+  flex: 0 0 auto;
+  height: 27.5rem; /* pode ajustar se quiser */
+  border-radius: 0.5rem;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.backdrop-card img {
+  height: 100%;
+  width: auto;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+/* Desktop/tablet */
+@media (min-width: 768px) {
+  .media-backdrops-carousel {
+    overflow: hidden;
+    flex-wrap: nowrap;
+  }
+
+  .backdrop-card {
+    flex: 0 0 auto;
+    width: 38.125rem;
+  }
+}
+
+/* ====================================================================RECOMMENDATIONS==================================================================== */
+.recommendations {
+  background-color: #102c57;
+  padding: 1.875rem 0;
+  overflow: hidden; /* evita que algo estoure pra fora */
+}
+
+.recommendations-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.25rem;
+  color: #f8f0e5;
+}
+
+.recommendations-carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.25rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+/* Cada card */
+.recommendation-card {
+  flex: 0 0 auto;
+  width: 11.25rem; /* ~180px */
+  border-radius: 0.5rem;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recommendation-card img {
+  width: 100%;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  display: block;
+}
+
+.recommendation-title {
+  text-align: center;
+  margin-top: 0.625rem;
+  margin-bottom: 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #f8f0e5;
+}
+
+.recommendation-rating {
+  text-align: center;
+  margin-top: 0.625rem;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.6875rem;
+  color: #f8f0e5;
+}
+
+/* -------- Comportamento por breakpoint -------- */
+
+/* No mobile: scroll horizontal ativo */
+@media (max-width: 767px) {
+  .recommendations-carousel {
+    overflow-x: auto;
+  }
+}
+
+/* No desktop: não tem scroll, mas o que não couber some */
+@media (min-width: 768px) {
+  .recommendations-carousel {
+    overflow: hidden; /* esconde os cards excedentes */
+    max-width: 100%; /* garante que não ultrapasse */
+  }
+
+  .recommendation-card {
+    flex-shrink: 0; /* impede de "amassar" o card */
+    width: 11.875rem;
+  }
+}
+
+.recommendations-carousel-wrapper {
+  position: relative;
+}
+
+.recommendations-carousel-wrapper::before,
+.recommendations-carousel-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.recommendations-carousel-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #102c57, transparent);
+}
+
+.recommendations-carousel-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #102c57, transparent);
+}
+
+.recommendations-carousel-wrapper.fade-left::before {
+  opacity: 1;
+}
+
+.recommendations-carousel-wrapper.fade-right::after {
+  opacity: 1;
 }
 
 /* ====================================================================FOOTER==================================================================== */

@@ -24,6 +24,7 @@
           /></a>
         </div>
         <nav class="nav">
+          <button class="nav__toggle" aria-label="Abrir menu">☰</button>
           <ul class="nav__list">
             <li><a href="#">Filmes</a></li>
             <li><a href="#">Séries</a></li>
@@ -89,13 +90,100 @@
         </div>
       </section>
       <section class="cast">
-        <div class="content-container">cast</div>
+        <div class="content-container">
+          <div class="cast-header">
+            <h2 class="cast-title">Elenco</h2>
+            <button class="cast-button">Ver mais</button>
+          </div>
+
+          <div class="carousel-wrapper fade-control">
+            <div class="cast-carousel carousel" id="cast-carousel">
+              <!-- Cards de atores inseridos via JS -->
+            </div>
+          </div>
+        </div>
       </section>
       <section class="miscellaneous">
-        <div class="content-container">miscellaneous</div>
+        <div class="content-container">
+          <section class="reviews">
+            <div class="reviews-header">
+              <h2 class="reviews-title">Resenhas</h2>
+              <button class="reviews-button">Ver mais</button>
+            </div>
+
+            <div class="reviews-cards"></div>
+          </section>
+          <section class="media">
+            <h2 class="media-title">Mídias</h2>
+            <section class="media-videos">
+              <div class="media-videos-header">
+                <h2 class="media-videos-title">
+                  Vídeos <span class="media-videos-count"></span>
+                </h2>
+                <button class="media-videos-button">Ver mais</button>
+              </div>
+
+              <div class="media-carousel-wrapper fade-control-mobile">
+                <div
+                  class="media-videos-carousel carousel-mobile"
+                  id="media-videos-carousel"
+                >
+                  <!-- Vídeos serão inseridos aqui via JS -->
+                </div>
+              </div>
+            </section>
+            <section class="media-posters">
+              <div class="media-posters-header">
+                <h2 class="media-posters-title">
+                  Pôsteres <span class="media-posters-count"></span>
+                </h2>
+                <button class="media-posters-button">Ver mais</button>
+              </div>
+
+              <div class="media-carousel-wrapper fade-control-mobile">
+                <div
+                  class="media-posters-carousel carousel-mobile"
+                  id="media-posters-carousel"
+                >
+                  <!-- Pôsteres vão aqui via JS -->
+                </div>
+              </div>
+            </section>
+            <section class="media-backdrops">
+              <div class="media-backdrops-header">
+                <h2 class="media-backdrops-title">
+                  Imagens de fundo <span class="media-backdrops-count"></span>
+                </h2>
+                <button class="media-backdrops-button">Ver mais</button>
+              </div>
+
+              <div class="media-carousel-wrapper fade-control-mobile">
+                <div
+                  class="media-backdrops-carousel carousel-mobile"
+                  id="media-backdrops-carousel"
+                >
+                  <!-- Imagens de fundo via JS -->
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
       </section>
       <section class="recommendations">
-        <div class="content-container">recommendations</div>
+        <div class="content-container">
+          <div class="recommendations-header">
+            <h2 class="recommendations-title">Recomendações</h2>
+          </div>
+
+          <div class="recommendations-carousel-wrapper fade-control-mobile">
+            <div
+              class="recommendations-carousel carousel-mobile"
+              id="recommendations-carousel"
+            >
+              <!-- Filmes recomendados inseridos via JS -->
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -128,5 +216,15 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.querySelector(".nav__toggle");
+        const navList = document.querySelector(".nav__list");
+
+        toggle.addEventListener("click", () => {
+          navList.classList.toggle("show");
+        });
+      });
+    </script>
   </body>
 </html>
