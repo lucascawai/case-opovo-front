@@ -78,7 +78,7 @@ getMovieDetails();
 async function loadCast() {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${MOVIE_ID}/credits?api_key=${API_KEY}&language=pt-BR`
+      `${BASE_URL}/movie/${MOVIE_ID}/credits?api_key=${API_KEY}&language=pt-BR`
     );
     const data = await response.json();
     const cast = data.cast.slice(0, 10); // first 10
@@ -171,7 +171,7 @@ function formatDate(dateStr) {
 async function renderReviews() {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${MOVIE_ID}/reviews?api_key=${API_KEY}&language=pt-BR&page=1`
+      `${BASE_URL}/movie/${MOVIE_ID}/reviews?api_key=${API_KEY}&language=pt-BR&page=1`
     );
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
@@ -220,7 +220,7 @@ async function renderReviews() {
 renderReviews();
 
 function setupMobileFadeEffect(querySelector) {
-  const isMobile = window.innerWidth <= 600; // ou 600, se for seu breakpoint
+  const isMobile = window.innerWidth <= 800; // ou 600, se for seu breakpoint
 
   if (!isMobile) return; // só aplica no mobile
 
@@ -246,7 +246,7 @@ function setupMobileFadeEffect(querySelector) {
 async function fetchVideos() {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${MOVIE_ID}/videos?api_key=${API_KEY}&language=pt-BR`
+      `${BASE_URL}/movie/${MOVIE_ID}/videos?api_key=${API_KEY}&language=pt-BR`
     );
     const data = await res.json();
 
@@ -283,7 +283,7 @@ fetchVideos().then(() => {
 async function fetchPosters() {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${MOVIE_ID}/images?api_key=${API_KEY}`
+      `${BASE_URL}/movie/${MOVIE_ID}/images?api_key=${API_KEY}`
     );
     const data = await res.json();
 
@@ -318,7 +318,7 @@ fetchPosters().then(() => {
 async function fetchBackdrops() {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${MOVIE_ID}/images?api_key=${API_KEY}`
+      `${BASE_URL}/movie/${MOVIE_ID}/images?api_key=${API_KEY}`
     );
     const data = await res.json();
 
@@ -357,7 +357,7 @@ fetchBackdrops().then(() => {
 async function fetchRecommendations() {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=pt-BR&page=1`
+      `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=pt-BR&page=1`
     );
     const data = await response.json();
 

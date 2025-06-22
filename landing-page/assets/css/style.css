@@ -23,6 +23,10 @@ body {
   height: 6.25rem;
   padding: 0 21.25rem;
 
+  @media (max-width: 800px) {
+    height: 60px;
+    padding: 0 0.9rem;
+  }
   @media (max-width: 600px) {
     height: 60px;
     padding: 0 0.9rem;
@@ -84,7 +88,7 @@ body {
 }
 
 /* Mobile/tablet - esconde o menu inicialmente */
-@media (max-width: 768px) {
+@media (max-width: 801px) {
   .nav__toggle {
     display: block;
   }
@@ -115,6 +119,10 @@ body {
 .content-container {
   padding: 0 21.25rem;
 
+  @media (max-width: 800px) {
+    padding: 0 0.9rem;
+  }
+
   @media (max-width: 600px) {
     padding: 0 0.9rem;
   }
@@ -124,6 +132,9 @@ body {
   background-color: #f8f0e5;
   padding: 6.25rem 0;
 
+  @media (max-width: 800px) {
+    padding: 3.125rem 0;
+  }
   @media (max-width: 600px) {
     padding: 1.875rem 0;
   }
@@ -134,6 +145,12 @@ body {
   flex-wrap: wrap;
   gap: 1.25rem;
   align-items: flex-start;
+
+  @media (max-width: 800px) {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
 
   @media (max-width: 600px) {
     justify-content: center;
@@ -279,14 +296,14 @@ body {
 /* ====================================================================CAST==================================================================== */
 .cast {
   background-color: #eadbc8;
-  padding: 4rem 0;
+  padding: 0;
 }
 
 .cast-header {
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   gap: 1rem;
 }
 
@@ -437,6 +454,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 800px) {
+    min-width: 40rem;
+  }
 }
 
 .review-text {
@@ -629,8 +650,8 @@ body {
   transform: scale(1.03);
 }
 
-/* Desktop/tablet: esconder scroll e quebrar layout se necessário */
-@media (min-width: 768px) {
+/* Desktop */
+@media (min-width: 801px) {
   .media-videos-carousel {
     overflow: hidden;
     flex-wrap: nowrap;
@@ -646,7 +667,7 @@ body {
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  margin: 2rem 0 1.5rem;
+  margin: 2rem 0 0 0;
   gap: 1rem;
 }
 
@@ -698,8 +719,8 @@ body {
   border-radius: 0.5rem;
 }
 
-/* Desktop/tablet: limitar a uma linha de pôsteres */
-@media (min-width: 768px) {
+/* Desktop */
+@media (min-width: 801px) {
   .media-posters-carousel {
     overflow: hidden;
     flex-wrap: nowrap;
@@ -716,7 +737,7 @@ body {
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  margin: 2rem 0 1.5rem;
+  margin: 2rem 0 0 0;
   gap: 1rem;
 }
 
@@ -753,7 +774,7 @@ body {
 
 .backdrop-card {
   flex: 0 0 auto;
-  height: 27.5rem; /* pode ajustar se quiser */
+  /* height: 27.5rem; */
   border-radius: 0.5rem;
   overflow: hidden;
   scroll-snap-align: start;
@@ -766,8 +787,8 @@ body {
   border-radius: 0.5rem;
 }
 
-/* Desktop/tablet */
-@media (min-width: 768px) {
+/* Desktop */
+@media (min-width: 801px) {
   .media-backdrops-carousel {
     overflow: hidden;
     flex-wrap: nowrap;
@@ -776,6 +797,13 @@ body {
   .backdrop-card {
     flex: 0 0 auto;
     width: 38.125rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .backdrop-card img {
+    width: 75vw;
+    height: auto;
   }
 }
 
@@ -843,14 +871,14 @@ body {
 /* -------- Comportamento por breakpoint -------- */
 
 /* No mobile: scroll horizontal ativo */
-@media (max-width: 767px) {
+@media (max-width: 800px) {
   .recommendations-carousel {
     overflow-x: auto;
   }
 }
 
 /* No desktop: não tem scroll, mas o que não couber some */
-@media (min-width: 768px) {
+@media (min-width: 801px) {
   .recommendations-carousel {
     overflow: hidden; /* esconde os cards excedentes */
     max-width: 100%; /* garante que não ultrapasse */
@@ -904,6 +932,10 @@ body {
   max-width: 120rem;
   height: 16.5625rem;
   color: #fff;
+
+  @media (max-width: 800px) {
+    height: 26.25rem;
+  }
 }
 
 .footer__container {
@@ -914,6 +946,11 @@ body {
   align-items: flex-start;
   gap: 6rem;
 
+  @media (max-width: 800px) {
+    gap: 1.875rem;
+    padding: 50px 0.9rem;
+    flex-direction: column;
+  }
   @media (max-width: 600px) {
     padding: 50px 0.9rem;
     flex-direction: column;
@@ -944,6 +981,10 @@ body {
   list-style: none;
   flex: 1; /* lista ocupa o máximo possível do espaço à direita */
 
+  /* @media (max-width: 800px) {
+    flex-direction: column;
+  } */
+
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -953,6 +994,10 @@ body {
   min-width: 150px; /* aumenta o tamanho mínimo de cada item */
   flex: 1 1 30%; /* ocupa aproximadamente 3 por linha */
   /* margin-bottom: 1rem; */
+  @media (max-width: 800px) {
+    width: 100%;
+    flex: 1 1 50%;
+  }
   @media (max-width: 600px) {
     width: 100%;
     flex: none;
