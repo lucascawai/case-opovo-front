@@ -1,4 +1,4 @@
-const API_KEY = "fa33d68cd36715fa3f7070976ba53415";
+const API_KEY = ""; // Insira sua chave aqui
 const MOVIE_ID = 346698; // Exemplo: "Clube da Luta" 550
 
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -89,7 +89,7 @@ async function loadCast() {
     cast.forEach((actor) => {
       const profilePath = actor.profile_path
         ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-        : "assets/images/avatar-placeholder.jpg"; // fallback, não tenho fallback por enquanto
+        : ""; // "assets/images/avatar-placeholder.jpg"; fallback, não tenho fallback por enquanto
 
       const card = document.createElement("div");
       card.className = "cast-member";
@@ -197,9 +197,9 @@ async function renderReviews() {
 renderReviews();
 
 function setupMobileFadeEffect(querySelector) {
-  const isMobile = window.innerWidth <= 800; // ou 600, se for seu breakpoint
+  const isMobileOrTablet = window.innerWidth <= 800; // ou 600, se for seu breakpoint
 
-  if (!isMobile) return; // só aplica no mobile
+  if (!isMobileOrTablet) return; // só aplica no mobile
 
   const wrappers = document.querySelectorAll(querySelector);
 
@@ -252,52 +252,6 @@ async function fetchVideos() {
     videoContainer.innerHTML = "<p>Erro ao carregar vídeos.</p>";
   }
 }
-
-// function hideCutOffVideoCards() {
-//   const container = document.querySelector(".media-videos-carousel");
-//   const cards = container.querySelectorAll(".video-card");
-
-//   cards.forEach((card) => {
-//     const rect = card.getBoundingClientRect();
-//     const containerRect = container.getBoundingClientRect();
-
-//     if (rect.right > containerRect.right) {
-//       card.style.display = "none";
-//     } else {
-//       card.style.display = "";
-//     }
-//   });
-// }
-
-// function waitForImagesThenHide(querySelector) {
-//   const images = document.querySelectorAll(`${querySelector} img`);
-//   let loaded = 0;
-
-//   if (images.length === 0) {
-//     hideCutOffVideoCards();
-//     return;
-//   }
-
-//   images.forEach((img) => {
-//     if (img.complete) {
-//       loaded++;
-//     } else {
-//       img.addEventListener("load", () => {
-//         loaded++;
-//         if (loaded === images.length) {
-//           hideCutOffVideoCards();
-//         }
-//       });
-//     }
-//   });
-
-//   if (loaded === images.length) {
-//     hideCutOffVideoCards();
-//   }
-// }
-
-// window.addEventListener("resize", hideCutOffVideoCards);
-// window.addEventListener("load", waitForImagesThenHide);
 
 function hideOverflowingVideoCards(containerSelector, cardSelector, cardWidth) {
   const container = document.querySelector(containerSelector);
